@@ -1,0 +1,24 @@
+@startuml
+
+node "Clients"{
+
+  () "App"
+  () "Website"
+}
+
+database "Vereinsserver" {
+  [Mitglied]
+    [Mitglied]
+    [Turnier]
+    [Sportart]
+}
+
+node "CMS" {
+
+}
+
+Website .. CMS
+App .. CMS
+CMS .. Vereinsserver
+
+@enduml

@@ -1,0 +1,74 @@
+@startuml
+
+class Mitglied {
+   int MitgliedsNr
+   String Name
+   String Adresse
+   int IBAN
+   String eMail
+   String Tel
+   Array Sportarten
+   Date Aufnahmedatum
+   Date Austrittsdatum
+}
+
+class Trainer {
+  int MitgliedsNr
+  int SportartID
+}
+
+class Vorstand {
+  int MitgliedsNr
+  Date Aufnahmedatum
+  Date Austrittsdatum
+}
+
+class VereinsKonto {
+  int interneID
+  int IBAN
+  int Guthaben
+  List Transaktionsliste
+}
+
+class Turnier {
+  int SportartID
+  Date TurnierBeginn
+  Date TurnierEnde
+  int HalleID
+}
+
+class Halle {
+  int HalleID
+  String Adresse
+  int IBAN
+  String eMail
+  String Tel
+  Array Sportarten
+}
+
+class Mannschaft {
+  int SportartID
+  String MannschaftsName
+}
+
+class Sportart {
+  int SportartID
+  String SportartName
+  Date Trainingszeiten
+  int HalleID
+}
+
+Mannschaft o--* Mitglied
+Mannschaft o-- Trainer
+Sportart o-- Trainer
+Mitglied <|-- Vorstand
+Mitglied <|-- Trainer
+Turnier .. Halle
+Turnier --* Sportart
+Turnier -- Mannschaft
+Mitglied ..> Turnier : organisiert
+Vorstand ..> VereinsKonto : verwaltet
+Sportart ..> Halle : findet statt in
+Mannschaft -- Sportart
+
+@enduml
